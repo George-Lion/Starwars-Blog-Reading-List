@@ -1,0 +1,70 @@
+
+.titulo{
+    color: white;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.wrapper{
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+
+.wrapper::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.wrapper::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+.wrapper::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to right, #4b0303 0%, #570202  51%, #700202  100%);
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.wrapper .card{
+    width: 320px;
+    flex: 0 0 auto;
+    background: rgb(0, 19, 31);
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 30px;
+    
+}
+
+.card:hover{
+    background: rgb(0, 33, 54);
+}
+
+
+
+.btn-grad::after {
+	content: "";
+	width: 1px;
+	height: 1px;
+	background: none;
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transition: .3s ease-in-out all;
+	border-radius: 100px;
+	transform-origin: center;
+}
+
+.btn-grad:hover::after {
+	transform: scale(120);
+	background: #5c0017;
+    
+}
+
+.btn-grad:hover {
+	background: #270000;
+    color: #f1f2f3;
+}
+
+.like{
+    margin-left: 100px;
+}

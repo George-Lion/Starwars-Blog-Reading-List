@@ -5,16 +5,27 @@ body{
     background: rgb(32, 32, 32);
 }
 
-.logo{
-    align-items: center;
-    width: 200px;
+.navbar{
+	position: fixed;
+	width: 100%;
+	display: flex;
+    background: rgb(19, 19, 19);
+	height: 100px;
+	z-index: 3;
 	
 }
 
+.dropdown{
+	margin-left: 30px;
+	z-index: 3;
+	margin-right: 20px;
+}
 
-
-.navbar{
-    background: rgb(19, 19, 19);
+.logo{
+    align-items: center;
+    width: 200px;
+	z-index: 3;
+	
 }
 
 .btn-grad {
@@ -35,10 +46,14 @@ body{
 	border-radius: 5px;
 	position: relative;
 	overflow: hidden;
+	
 }
 
 .btn-grad span {
 	position: relative;
 	z-index: 2;
 	transition: .3s ease all;
+	
+	
 }
+

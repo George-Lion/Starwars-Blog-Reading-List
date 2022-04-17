@@ -8,6 +8,7 @@
     display: flex;
     overflow-x: auto;
     margin-bottom: 40px;
+    z-index: 1;
 }
 
 .wrapper::-webkit-scrollbar {
@@ -66,5 +67,10 @@
 }
 
 .like{
-    margin-left: 100px;
+    margin-left: 80px;
+    font-size: 20px;
+    color: grey;
 }
+
+
+

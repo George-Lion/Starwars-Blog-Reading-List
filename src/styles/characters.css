@@ -1,0 +1,29 @@
+.box{
+    color:azure;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.btn-gradbox{
+    height: 30px;
+}
+
+.info{
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.img1{
+    height: 350px;
+}
+
+.img2{
+    width: 1000px;
+  
+}
+
+.img3{
+    width: 1000px;
+    height: 350px;
+}

@@ -1,14 +1,3 @@
-import p1 from "../../img/p1.jpg";
-import p2 from "../../img/p2.jpg";
-import p3 from "../../img/p3.jpg";
-import p4 from "../../img/p4.jpg";
-import p5 from "../../img/p5.jpg";
-import p6 from "../../img/p6.jpg";
-import p7 from "../../img/p7.jpg";
-import p8 from "../../img/p8.jpg";
-import p9 from "../../img/p9.jpg";
-import p10 from "../../img/p10.jpg";
-
 const getState = ({ getStore, getActions, setStore, setState }) => {
   return {
     store: {
@@ -665,75 +654,70 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
           __v: 0,
         },
       ],
-      oneCharacters: [],
+
+      /*    demo: [
+				{
+					color: "red",
+				},
+			], */
+
+      oneCharacter: {},
+      onePlanet: {},
+      oneVehicle: {},
       charactersInfo: [],
       planetsInfo: [],
       favorites: [],
-      like:"green"
     },
 
     actions: {
-    /*   updateFavorites: (like) => {
-        setStore({ favorites: [...getStore().favorites, like] });  
-      },
+      /*      changeColor: ()=>{
+        const cls = "green"
+        if (cls === "red"){
+          setStore("red")
+        }else{
+          "red"
+          setStore("green")
+        }
 
-      deleteFavorites: (id) => {
-        getStore().favoritesFilter = getStore().favorites.filter((e, index) => index !== id);
-        setStore(favoritesFilter)
-      },
- */
-    /*   deleteFavorites: (id) => {
-        const favoritesFilter = favorites.filter((e, index) => index !== id);
-        setStore(favoritesFilter);
+
       }, */
 
       updateFavorites: (like) => {
         const favorites = getStore().favorites;
-        if (!favorites.includes(like)){
+        const actions = getActions;
+        if (!favorites.includes(like)) {
           setStore({ favorites: [...getStore().favorites, like] });
-          
-         
-        }
-        else {
-          setStore({favorites: favorites.filter((e) => e !== like)})
-          
+        } else {
+          setStore({ favorites: favorites.filter((e) => e !== like) });
         }
       },
-     
 
+      changeColor: (i, color2) => {
+        //get the store
+        const store = getStore();
 
-      getPlanets: async () => {
-        const response = await fetch("https://www.swapi.tech/api/planets");
-        const dataPlanets = await response.json();
-        setStore({ planets: dataPlanets.results });
-        let arrayPrueba = [];
-        for (let i = 0; i < dataPlanets.results.length; i++) {
-          const prueba = await getActions().getPlanetsInfo(
-            dataPlanets.results[i].uid
-          );
-          arrayPrueba.push(prueba);
-        }
-        setStore({ planets: arrayPrueba });
-      },
+        //we have to loop the entire demo array to look for the respective index
+        //and change its color
+        const demo = store.demo.map((elm) => {
+          if (i === characters.uid) elm.color = color2;
+          return elm;
+        });
 
-      getPlanetsInfo: async (e) => {
-        const response = await fetch("https://www.swapi.tech/api/people/" + e);
-        const dataPlanetsInfo = await response.json();
-        return dataPlanetsInfo.result;
+        //reset the global store
+        setStore({ demo: demo });
       },
 
       getCharacters: async () => {
-        const response = await fetch("https://www.swapi.tech/api/people");
+        const response = await fetch("https://www.swapi.tech/api/people/");
         const dataCharacters = await response.json();
-        setStore({ planets: dataCharacters.results });
-        let arrayPrueba2 = [];
+        let arrayPrueba = [];
         for (let i = 0; i < dataCharacters.results.length; i++) {
-          const prueba = await getActions().getPlanetsInfo(
+          const prueba = await getActions().getCharactersInfo(
             dataCharacters.results[i].uid
           );
-          arrayPrueba2.push(prueba);
+          /* arrayPrueba.push(prueba); */
         }
-        setStore({ characters: arrayPrueba2 });
+        setStore({ characters: arrayPrueba });
       },
 
       getCharactersInfo: async (e) => {
@@ -742,11 +726,73 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
         return dataCharactersInfo.result;
       },
 
-      getOneCharacters: async (e) => {
-        const response = await fetch("https://www.swapi.tech/api/people/1" + e);
-        const dataOneCharacters = await response.json();
-        setStore({ info: dataOneCharacters.result.properties });
-        /* return dataOneCharacters.result; */
+      getOneCharacter: async (e) => {
+        const response = await fetch("https://www.swapi.tech/api/people/" + e);
+        const dataOneCharacter = await response.json();
+        //dataOnePlanet.result.properties.uid = e;
+        setStore({
+          oneCharacter: { ...dataOneCharacter.result.properties, uid: e },
+        });
+      },
+
+      //PLANETS
+
+      getPlanets: async () => {
+        const response = await fetch("https://www.swapi.tech/api/planets/");
+        const dataPlanets = await response.json();
+        let arrayPrueba = [];
+        for (let i = 0; i < dataPlanets.results.length; i++) {
+          const prueba = await getActions().getPlanetsInfo(
+            dataPlanets.results[i].uid
+          );
+          /* arrayPrueba.push(prueba); */
+        }
+        setStore({ Planets: arrayPrueba });
+      },
+
+      getPlanetsInfo: async (e) => {
+        const response = await fetch("https://www.swapi.tech/api/planets/" + e);
+        const dataPlanetsInfo = await response.json();
+        return dataPlanetsInfo.result;
+      },
+
+      getOnePlanet: async (e) => {
+        const response = await fetch("https://www.swapi.tech/api/planets/" + e);
+        const dataOnePlanet = await response.json();
+        //dataOnePlanet.result.properties.uid = e;
+        setStore({
+          onePlanet: { ...dataOnePlanet.result.properties, uid: e },
+        });
+      },
+
+      //VEHICLES
+
+      getVehicles: async () => {
+        const response = await fetch("https://www.swapi.tech/api/vehicles");
+        const dataVehicles = await response.json();
+        let arrayPrueba = [];
+        for (let i = 0; i < dataVehicles.results.length; i++) {
+          const prueba = await getActions().getVehiclesInfo(
+            dataVehicles.results[i].uid
+          );
+          /* arrayPrueba.push(prueba); */
+        }
+        setStore({ Vehicles: arrayPrueba });
+      },
+
+      getVehiclesInfo: async (e) => {
+        const response = await fetch("https://www.swapi.tech/api/vehicles/" + e);
+        const dataVehiclesInfo = await response.json();
+        return dataVehiclesInfo.result;
+      },
+
+      getOneVehicle: async (e) => {
+        const response = await fetch("https://www.swapi.tech/api/vehicles/" + e);
+        const dataOneVehicle = await response.json();
+        //dataOnePlanet.result.properties.uid = e;
+        setStore({
+          oneVehicle: { ...dataOneVehicle.result.properties, uid: e },
+        });
       },
     },
   };

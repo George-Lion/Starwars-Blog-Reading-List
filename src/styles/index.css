@@ -4,7 +4,9 @@
 body{
     background: rgb(32, 32, 32);
 }
-
+.head{
+	padding-bottom: 120px;
+}
 .navbar{
 	position: fixed;
 	width: 100%;
@@ -19,6 +21,7 @@ body{
 	margin-left: 30px;
 	z-index: 3;
 	margin-right: 20px;
+	padding: 0px;
 }
 
 .logo{
@@ -32,8 +35,8 @@ body{
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 150px;
-	height: 50px;
+	width: 120px;
+	height: 40px;
 	background: #cfcfcf;
 	color: rgb(70, 2, 19);
 	font-family: 'Barlow Semi Condensed', sans-serif;
@@ -52,8 +55,30 @@ body{
 .btn-grad span {
 	position: relative;
 	z-index: 2;
-	transition: .3s ease all;
-	
-	
+	transition: .3s ease all;	
 }
 
+.btn-grad::after {
+	content: "";
+	width: 1px;
+	height: 1px;
+	background: none;
+	position: absolute;
+	z-index: 1;
+	top: 50%;
+	left: 50%;
+	transition: .3s ease-in-out all;
+	border-radius: 100px;
+	transform-origin: center;
+}
+
+.btn-grad:hover::after {
+	transform: scale(100);
+	background: #360311;
+    
+}
+
+.btn-grad:hover {
+	background: #270000;
+    color: #f1f2f3;
+}

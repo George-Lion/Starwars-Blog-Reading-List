@@ -9,7 +9,7 @@ export const Navbar = () => {
 const { store, actions } = useContext(Context);
 
   return (
-    <div className="">
+    <div className="head">
       <nav className="navbar navbar-light mb-3">
         <Link to="/">
           <img
@@ -19,20 +19,16 @@ const { store, actions } = useContext(Context);
         </Link>
         <div className="dropdown">
           <button
-            className="btn btn-dark dropdown-toggle "
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+            className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"
           >
             Favorites {store.favorites.length}
           </button>
           <ul
-            className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start"
-            aria-labelledby="dropdownMenuButton1"
+            className="ulbox dropdown-menu dropdown-menu-sm-end dropdown-menu-xxl-end"
+           
           >
             {store.favorites.map((like, i) => {
-            return (<li key={i} className="dropdown-item">
+            return (<li key={i} className="dropdown-item"  type="button">
                 {like}{/* {id} */}
             </li>)})}
            

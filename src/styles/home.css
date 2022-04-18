@@ -24,7 +24,7 @@
     border: 2px solid #f1f2f3;
 }
 
-.wrapper .card{
+.wrapper .card1{
     width: 320px;
     flex: 0 0 auto;
     background: rgb(0, 19, 31);
@@ -35,42 +35,30 @@
     
 }
 
-.card:hover{
+.card1:hover{
     background: rgb(0, 33, 54);
 }
 
 
 
-.btn-grad::after {
-	content: "";
-	width: 1px;
-	height: 1px;
-	background: none;
-	position: absolute;
-	z-index: 1;
-	top: 50%;
-	left: 50%;
-	transition: .3s ease-in-out all;
-	border-radius: 100px;
-	transform-origin: center;
-}
 
-.btn-grad:hover::after {
-	transform: scale(120);
-	background: #5c0017;
-    
-}
-
-.btn-grad:hover {
-	background: #270000;
-    color: #f1f2f3;
-}
 
 .like{
     margin-left: 80px;
     font-size: 20px;
     color: grey;
+    border-radius: 30px;
+    box-shadow: none;
+  
 }
 
+.like:hover{
+    background: #570202;
+}
 
+Link{
+    box-shadow: none;
+    
+    
+}
 

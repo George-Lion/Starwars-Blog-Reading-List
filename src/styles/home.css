@@ -39,21 +39,13 @@
     background: rgb(0, 33, 54);
 }
 
-
-
-
-
 .like{
-    margin-left: 80px;
-    font-size: 20px;
+    margin-left: 120px;
+    font-size: 25px;
     color: grey;
     border-radius: 30px;
     box-shadow: none;
   
-}
-
-.like:hover{
-    background: #570202;
 }
 
 Link{
@@ -62,3 +54,16 @@ Link{
     
 }
 
+.more{
+    font-size: 80px;
+    color: #ffffff;
+    align-items: center;
+    margin-top: 225px;
+    margin-bottom: 320px;
+    margin-left: 20px;
+
+}
+
+.more:hover{
+   color: #570202;
+}

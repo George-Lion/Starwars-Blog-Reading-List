@@ -1,4 +1,4 @@
-const getState = ({ getStore, getActions, setStore, setState }) => {
+const getState = ({ getStore, getActions, setStore}) => {
   return {
     store: {
       characters: [
@@ -655,36 +655,21 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
         },
       ],
 
-      /*    demo: [
-				{
-					color: "red",
-				},
-			], */
-
       oneCharacter: {},
       onePlanet: {},
       oneVehicle: {},
       charactersInfo: [],
       planetsInfo: [],
       favorites: [],
+      nextCharacters: "https://www.swapi.tech/api/people?page=2&limit=10",
+      nextPlanets: "https://www.swapi.tech/api/planets?page=2&limit=10",
+      nextVehicles: "https://www.swapi.tech/api/vehicles?page=2&limit=10"
     },
 
     actions: {
-      /*      changeColor: ()=>{
-        const cls = "green"
-        if (cls === "red"){
-          setStore("red")
-        }else{
-          "red"
-          setStore("green")
-        }
-
-
-      }, */
-
+ 
       updateFavorites: (like) => {
         const favorites = getStore().favorites;
-        const actions = getActions;
         if (!favorites.includes(like)) {
           setStore({ favorites: [...getStore().favorites, like] });
         } else {
@@ -692,32 +677,19 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
         }
       },
 
-      changeColor: (i, color2) => {
-        //get the store
-        const store = getStore();
-
-        //we have to loop the entire demo array to look for the respective index
-        //and change its color
-        const demo = store.demo.map((elm) => {
-          if (i === characters.uid) elm.color = color2;
-          return elm;
-        });
-
-        //reset the global store
-        setStore({ demo: demo });
-      },
-
       getCharacters: async () => {
-        const response = await fetch("https://www.swapi.tech/api/people/");
+        const response = await fetch(getStore().nextCharacters);
         const dataCharacters = await response.json();
+        setStore({nextCharacters:dataCharacters.next})
+        console.log(dataCharacters);
         let arrayPrueba = [];
         for (let i = 0; i < dataCharacters.results.length; i++) {
           const prueba = await getActions().getCharactersInfo(
             dataCharacters.results[i].uid
           );
-          /* arrayPrueba.push(prueba); */
+          setStore({ characters: [...getStore().characters, prueba] })
         }
-        setStore({ characters: arrayPrueba });
+        
       },
 
       getCharactersInfo: async (e) => {
@@ -738,16 +710,18 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
       //PLANETS
 
       getPlanets: async () => {
-        const response = await fetch("https://www.swapi.tech/api/planets/");
+        const response = await fetch(getStore().nextPlanets);
         const dataPlanets = await response.json();
+        setStore({nextCharacters:dataPlanets.next})
+        console.log(dataPlanets);
         let arrayPrueba = [];
         for (let i = 0; i < dataPlanets.results.length; i++) {
           const prueba = await getActions().getPlanetsInfo(
             dataPlanets.results[i].uid
           );
-          /* arrayPrueba.push(prueba); */
+          setStore({ planets: [...getStore().planets, prueba] })
         }
-        setStore({ Planets: arrayPrueba });
+       
       },
 
       getPlanetsInfo: async (e) => {
@@ -768,16 +742,18 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
       //VEHICLES
 
       getVehicles: async () => {
-        const response = await fetch("https://www.swapi.tech/api/vehicles");
+        const response = await fetch(getStore().nextVehicles);
         const dataVehicles = await response.json();
+        setStore({nextVehicles:dataVehicles.next})
+        console.log(dataVehicles);
         let arrayPrueba = [];
         for (let i = 0; i < dataVehicles.results.length; i++) {
           const prueba = await getActions().getVehiclesInfo(
             dataVehicles.results[i].uid
           );
-          /* arrayPrueba.push(prueba); */
+          setStore({ vehicles: [...getStore().vehicles, prueba] })
         }
-        setStore({ Vehicles: arrayPrueba });
+        
       },
 
       getVehiclesInfo: async (e) => {
@@ -799,3 +775,6 @@ const getState = ({ getStore, getActions, setStore, setState }) => {
 };
 
 export default getState;
+
+    
+     

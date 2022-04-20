@@ -1,17 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
+
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
-import characters from "../../img/people.jpg";
-import planets from "../../img/planetsJpg.jpg";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    /* actions.getPlanets(); */
-    console.log(store.planets);
+  /*   actions.getCharacters(); */
     console.log(store.characters);
+    console.log(store.planets);
+    console.log(store.vehicles);
   }, []);
 
   return (
@@ -19,9 +19,13 @@ export const Home = () => {
       {/* CHARACTERS */}
 
       <div className="container">
-        <h1 className="titulo">CHARACTERS</h1>
+        <h1 className="titulo">{store.characters.length} CHARACTERS</h1>
         <div className="wrapper">
           {store.characters.map((people) => {
+            let changeColor = "";
+            if (store.favorites.includes(people.name)) {
+              changeColor = "text-danger";
+            }
             return (
               <div key={people.uid} className="card1">
                 <img
@@ -55,28 +59,34 @@ export const Home = () => {
                       <span>More info</span>
                     </button>
                   </Link>
-
-                  <button
-                    className="like"
+                  <i
+                    className={"fas fa-heart like " + changeColor}
                     onClick={() => {
                       actions.updateFavorites(people.properties.name);
                     }}
-                  >
-                    <i className="fas fa-heart"></i>
-                  </button>
+                  ></i>
                 </div>
               </div>
             );
           })}
+          
+          {store.nextCharacters != null ?<i
+            className="more fas fa-angle-double-right"
+            onClick={() => actions.getCharacters()}
+          ></i>: null}
         </div>
       </div>
 
       {/* PLANETS */}
 
       <div className="container">
-        <h1 className="titulo">PLANETS</h1>
+        <h1 className="titulo">{store.planets.length} PLANETS</h1>
         <div className="wrapper">
           {store.planets.map((planet, i) => {
+            let changeColor2 = "";
+            if (store.favorites.includes(planet.properties.name)) {
+              changeColor2 = "text-danger";
+            }
             return (
               <div key={i} className="card1">
                 <img
@@ -102,7 +112,7 @@ export const Home = () => {
                     CLIMATE: {planet.properties.climate}
                   </p>
                   <p className="card-text">
-                    TERRAIN: {planet.properties.terrain}
+                    TERRAIN: {planet.properties.gravity}
                   </p>
                   <Link
                     to={/planets/ + planet.uid}
@@ -112,27 +122,33 @@ export const Home = () => {
                       <span>More info</span>
                     </button>
                   </Link>
-                  <button
-                    className="like"
+                  <i
+                    className={"fas fa-heart like " + changeColor2}
                     onClick={() => {
-                      actions.updateFavorites(planet.properties.name);
+                     actions.updateFavorites(planet.properties.name);
                     }}
-                  >
-                    <i className="fas fa-heart" />
-                  </button>
+                  ></i>
                 </div>
               </div>
             );
           })}
+           {store.nextPlanets != null ?<i
+            className="more fas fa-angle-double-right"
+            onClick={() => actions.getPlanets()}
+          ></i>: null}
         </div>
       </div>
 
       {/* VEHICLES */}
 
       <div className="container">
-        <h1 className="titulo">VEHICLES</h1>
+        <h1 className="titulo">{store.vehicles.length} VEHICLES</h1>
         <div className="wrapper">
           {store.vehicles.map((vehicle) => {
+            let changeColor3 = "";
+            if (store.favorites.includes(vehicle.properties.name)) {
+              changeColor3 = "text-danger";
+            }
             return (
               <div key={vehicle.uid} className="card1">
                 <img
@@ -170,18 +186,20 @@ export const Home = () => {
                     </button>
                   </Link>
 
-                  <button
-                    className="like"
+                  <i
+                    className={"fas fa-heart like " + changeColor3}
                     onClick={() => {
                       actions.updateFavorites(vehicle.properties.name);
                     }}
-                  >
-                    <i className="fas fa-heart" />
-                  </button>
+                  ></i>
                 </div>
               </div>
             );
           })}
+           {store.nextVehicles != null ?<i
+            className="more fas fa-angle-double-right"
+            onClick={() => actions.getVehicles()}
+          ></i>: null}
         </div>
       </div>
     </div>

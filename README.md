@@ -1,3 +1,31 @@
+## Starwars Blog Reading List
+
+The following project is aimed at the use of APIs to make a web that allows you to create
+cards based on the characters, planets, and vehicles from the Star Wars universe. an API
+allows us to access certain information generated on a server, which is communicated to
+our code using functions that allow access to that database.
+
+The structure of this project is distributed in 2 main components that are the
+navbar and footer, then its layout is divided into the views section
+With `home` as our main page, the rendering of it looks like this:
+
+<img src="/src/img/1.jpg">
+
+
+Support and material pages:
+
+[-API](https://swapi.dev/).
+
+[-Bootstrap](https://getbootstrap.com/).
+
+[-Fontawesome](https://fontawesome.com/).
+
+[-CSS gradient](https://cssgradient.io/).
+
+
+
+
+
 # WebApp boilerplate with React JS
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
 

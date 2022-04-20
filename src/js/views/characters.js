@@ -13,7 +13,7 @@ export const Characters = (props) => {
   }, []);
 
   return (
-    <div >
+    <div className="boxCard">
     {/* {store.oneCharacter.uid} */}
     <div className="box card mb-3 mx-auto" style={{maxWidth: "1000px"}} >
       <div className="row g-0" >
@@ -30,6 +30,7 @@ export const Characters = (props) => {
         <div className="col-md-4" >
           <div className="card-body">
             <h3 className="card-title">Nombre: {store.oneCharacter.name}</h3>
+           {/*  {store.oneCharacter.diameter ? <h3 className="card-title">diameter: {store.oneCharacter.diameter}</h3>: null} */}
             <h5 className="card-title">Hair color: {store.oneCharacter.hair_color}</h5>
             <h5 className="card-title">Birth year: {store.oneCharacter.birth_year}</h5>
             <h5 className="card-title">Eye color: {store.oneCharacter.eye_color}</h5>
